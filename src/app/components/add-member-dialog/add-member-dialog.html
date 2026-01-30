@@ -1,0 +1,82 @@
+<div class="custom-dialog-container">
+  <div class="dialog-header">
+    <div class="header-text">
+      <h1>Manage Members</h1>
+      <span class="team-name-badge">{{ data.teamName }}</span>
+    </div>
+    <button class="close-icon-btn" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content class="modern-scroll">
+    <div class="content-section">
+      <div class="section-label">
+        <mat-icon>groups</mat-icon>
+        <span>CURRENT TEAM MEMBERS ({{ currentMembers().length }})</span>
+      </div>
+
+      <div class="members-list-wrapper">
+        @for (member of currentMembers(); track member.id) {
+          <div class="member-card">
+            <div class="member-profile">
+              <div class="avatar-box">{{ member.name[0] | uppercase }}</div>
+              <div class="member-info">
+                <span class="name">{{ member.name }}</span>
+                <span class="role-pill">{{ member.role }}</span>
+              </div>
+            </div>
+            <button class="remove-action-btn" (click)="onRemoveMember(member.id)" matTooltip="Remove Member">
+              <mat-icon>person_remove</mat-icon>
+            </button>
+          </div>
+        } @empty {
+          @if (!isLoading()) {
+            <div class="empty-state-box">No members in this team yet.</div>
+          }
+        }
+        
+        @if (isLoading()) {
+          <div class="loading-state">Loading members...</div>
+        }
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="content-section">
+      <div class="section-label">
+        <mat-icon>person_add</mat-icon>
+        <span>ADD NEW MEMBER</span>
+      </div>
+
+      <form [formGroup]="addMemberForm" (ngSubmit)="onAddMember()" class="add-member-form">
+        <div class="inputs-row">
+          <mat-form-field appearance="outline" class="flex-grow">
+            <mat-label>Select User</mat-label>
+            <mat-select formControlName="userId">
+              @for (user of availableUsers(); track user.id) {
+                <mat-option [value]="user.id">{{ user.name }}</mat-option>
+              }
+            </mat-select>
+            <mat-icon matPrefix>person</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="role-select">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+              <mat-option value="member">Member</mat-option>
+              <mat-option value="admin">Admin</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <button mat-flat-button class="submit-action-btn" 
+                [disabled]="addMemberForm.invalid || isLoading()">
+          <mat-icon>add</mat-icon>
+          <span>ADD TO TEAM</span>
+        </button>
+      </form>
+    </div>
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,13 @@
+<app-auth-form 
+  title="Create Account" 
+  subtitle="Join TeamSync today"
+  submitLabel="Register"
+  [fields]="signupFields"
+  [isLoading]="isLoading()"
+  [errorMessage]="authError()"
+  (formSubmit)="onSignup($event)">
+  
+  <div footer class="login-footer">
+    Already have an account? <a routerLink="/auth/login">Sign In</a>
+  </div>
+</app-auth-form>

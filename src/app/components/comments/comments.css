@@ -1,0 +1,76 @@
+.comments-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+}
+
+.comments-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message-row {
+  display: flex;
+  width: 100%;
+}
+
+.message-row.own {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--bg-main); 
+  border: 1px solid var(--border);
+}
+
+.message-row.own .bubble {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.input-section {
+  padding: 16px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+}
+
+.input-section mat-form-field {
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .comments-panel {
+    border-right: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50vh;
+    z-index: 1001;
+  }
+}

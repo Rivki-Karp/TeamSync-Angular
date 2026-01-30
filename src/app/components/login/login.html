@@ -1,0 +1,13 @@
+<app-auth-form 
+  title="Welcome Back" 
+  subtitle="Sign in to your account"
+  submitLabel="Sign In"
+  [fields]="loginFields"
+  [isLoading]="isLoading()"
+  [errorMessage]="authError()"
+  (formSubmit)="onSubmit($event)">
+  
+  <div footer class="login-footer">
+    Don't have an account? <a routerLink="/auth/signup">Sign Up</a>
+  </div>
+</app-auth-form>

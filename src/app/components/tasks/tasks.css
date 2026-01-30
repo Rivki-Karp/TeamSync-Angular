@@ -1,0 +1,140 @@
+.board-container {
+  padding: 32px;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  min-height: 80px; 
+  margin-bottom: 20px;
+}
+
+.board-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #fff, rgba(255,255,255,0.5));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.board-columns {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.column {
+  flex: 1;
+  min-width: 320px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 0 8px;
+}
+
+.column-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 600;
+  color: #fff;
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot.todo { background: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
+.dot.progress { background: #f59e0b; box-shadow: 0 0 10px #f59e0b; }
+.dot.done { background: #10b981; box-shadow: 0 0 10px #10b981; }
+
+.task-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.task-list::-webkit-scrollbar { width: 4px; }
+.task-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+.add-task-btn {
+  transform: scale(1.2);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.add-task-btn:hover { transform: scale(1.3) rotate(90deg); }
+
+@media (prefers-color-scheme: light) {
+  .board-header h1 {
+    background: linear-gradient(45deg, #1e293b, #64748b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .column-header h2 {
+    color: #1e293b !important;
+  }
+
+  .back-btn {
+    color: #1e293b !important;
+  }
+}
+
+@media (max-width: 1024px) {
+    .board-container {
+        height: auto;
+        overflow-y: visible;
+        padding: 10px;
+    }
+
+    .board-columns {
+        flex-direction: column;
+        overflow-x: hidden; 
+        gap: 20px;
+        height: auto;
+    }
+
+    .column {
+        min-width: 100%; 
+        width: 100%;
+        max-height: none; 
+        flex: none;
+        box-sizing: border-box;
+    }
+
+    .task-list {
+        overflow-y: visible;
+        max-height: none;
+        height: auto;
+    }
+
+    .board-header {
+        flex-wrap: wrap;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .board-header h1 {
+        font-size: 1.6rem;
+        word-break: break-word; 
+    }
+}
+
+app-task-card {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+}

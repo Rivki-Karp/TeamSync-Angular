@@ -1,0 +1,60 @@
+<div class="board-container">
+    <header class="board-header">
+        <div class="title-group">
+            <button mat-icon-button (click)="goBack()" class="back-btn">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h1>Project Tasks</h1>
+        </div>
+        <button mat-fab color="primary" class="add-task-btn" (click)="openAddTaskDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </header>
+
+    <div class="board-columns">
+        <div class="column">
+            <div class="column-header">
+                <span class="dot todo"></span>
+                <h2>Backlog</h2>
+                <span class="count">{{ todoTasks().length }}</span>
+            </div>
+            <div class="task-list">
+                @for (task of todoTasks(); track task.id) {
+                <app-task-card [task]="task" (deleteTask)="onDeleteTask($event)"
+                    (updateStatus)="onUpdateStatus($event)">
+                </app-task-card>
+                }
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <span class="dot progress"></span>
+                <h2>In Progress</h2>
+                <span class="count">{{ inProgressTasks().length }}</span>
+            </div>
+            <div class="task-list">
+                @for (task of inProgressTasks(); track task.id) {
+                <app-task-card [task]="task" (deleteTask)="onDeleteTask($event)"
+                    (updateStatus)="onUpdateStatus($event)">
+                </app-task-card>
+                }
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <span class="dot done"></span>
+                <h2>Done</h2>
+                <span class="count">{{ doneTasks().length }}</span>
+            </div>
+            <div class="task-list">
+                @for (task of doneTasks(); track task.id) {
+                <app-task-card [task]="task" (deleteTask)="onDeleteTask($event)"
+                    (updateStatus)="onUpdateStatus($event)">
+                </app-task-card>
+                }
+            </div>
+        </div>
+    </div>
+</div>

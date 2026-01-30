@@ -1,0 +1,30 @@
+<div class="teams-container">
+  <header class="header-section">
+    <div>
+      <h1>My Teams</h1>
+      <p>Manage your collaboration groups</p>
+    </div>
+    <button mat-fab extended color="primary" (click)="openCreateTeamDialog()">
+      <mat-icon>add</mat-icon>
+      NEW TEAM
+    </button>
+  </header>
+
+  @if (isLoading()) {
+  <div class="loader-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  } @else {
+  <div class="teams-grid">
+    @for (team of teams(); track team.id) {
+    <app-team-card [team]="team" (addMember)="onAddMember(team)" (deleteTeam)="onDeleteTeam($event)"
+      (viewProjects)="onViewProjects($event)" />
+    } @empty {
+    <div class="empty-state">
+      <mat-icon>group_off</mat-icon>
+      <p>No teams found. Create your first team to get started!</p>
+    </div>
+    }
+  </div>
+  }
+</div>

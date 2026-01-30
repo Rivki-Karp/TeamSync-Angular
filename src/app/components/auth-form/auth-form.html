@@ -1,0 +1,57 @@
+<div class="login-container">
+  <mat-card class="ts-card login-card">
+    <div class="login-header">
+      <h1>{{ title() }}</h1>
+      <p>{{ subtitle() }}</p>
+    </div>
+
+    <form [formGroup]="form()" (ngSubmit)="onSubmit()">
+      @for (field of fields(); track field.name) {
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ field.label }}</mat-label>
+          
+          <input matInput 
+                 [formControlName]="field.name" 
+                 [type]="field.type === 'password' && hidePassword() ? 'password' : (field.type === 'password' ? 'text' : field.type)">
+          
+          <mat-icon matPrefix>{{ field.icon }}</mat-icon>
+
+          @if (field.type === 'password') {
+            <button type="button" mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())">
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          }
+
+          <mat-error>
+            @for (key of objectKeys(field.errorMessages); track key) {
+              @if (form().get(field.name)?.hasError(key)) {
+                {{ field.errorMessages[key] }}
+              }
+            }
+          </mat-error>
+        </mat-form-field>
+      }
+
+      @if (errorMessage()) {
+        <div class="error-banner">
+          <mat-icon>error</mat-icon>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <button mat-raised-button 
+              color="primary" 
+              class="login-btn" 
+              type="submit" 
+              [disabled]="form().invalid || isLoading()">
+        @if (isLoading()) {
+          <span>Connecting...</span>
+        } @else {
+          <span>{{ submitLabel() }}</span>
+        }
+      </button>
+
+      <ng-content select="[footer]"></ng-content>
+    </form>
+  </mat-card>
+</div>

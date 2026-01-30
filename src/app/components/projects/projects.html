@@ -1,0 +1,34 @@
+<div class="projects-wrapper">
+  <header class="projects-header">
+    <div class="title-area">
+      <h1>Projects Board</h1>
+      <p>Manage and organize your team's workflows</p>
+    </div>
+    <button mat-fab color="primary" (click)="openCreateProjectDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </header>
+
+  <div class="content-area">
+    @if (isLoading()) {
+    <div class="spinner-container full-width">
+      <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+      <p>Loading projects...</p>
+    </div>
+    } @else {
+    @for (item of projects(); track item.id) {
+    <app-project-card [project]="item" (viewDetails)="onViewTasks($event)" (edit)="openEditProjectDialog($event)"
+      (delete)="onDeleteProject($event)">
+    </app-project-card>
+    } @empty {
+    <div class="empty-state-container">
+      <div class="empty-state">
+        <mat-icon>assignment_late</mat-icon>
+        <h3>No projects yet</h3>
+        <p>Click the + button to create your first project for the team.</p>
+      </div>
+    </div>
+    }
+    }
+  </div>
+</div>

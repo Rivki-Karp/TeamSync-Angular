@@ -1,0 +1,49 @@
+<div class="modern-project-card" (click)="viewDetails.emit(project().id)">
+  <div class="accent-bar"></div>
+
+  <div class="top-actions-anchor">
+    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()" class="menu-btn">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
+  <div class="card-inner">
+    <div class="card-top">
+      <div class="project-identity">
+        <div class="icon-wrapper">
+          <mat-icon style="color: var(--accent-color)">analytics</mat-icon>
+        </div>
+        <div class="titles">
+          <h3>{{ project().name }}</h3>
+          <span class="team-badge">{{ teamName() }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <p>{{ project().description || 'Seamlessly manage your team workflow.' }}</p>
+    </div>
+
+    <div class="card-footer">
+      <div class="date-info">
+        <mat-icon>event</mat-icon>
+        <span>{{ project().created_at | date:'MMM d, y' }}</span>
+      </div>
+
+      <div class="go-button">
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu" class="custom-project-menu">
+  <button mat-menu-item (click)="onEdit($event)">
+    <mat-icon>edit</mat-icon>
+    <span>Edit Settings</span>
+  </button>
+  <button mat-menu-item (click)="onDelete($event)" class="delete-item">
+    <mat-icon style="color: #f87171;">delete</mat-icon>
+    <span style="color: #f87171;">Delete Project</span>
+  </button>
+</mat-menu>

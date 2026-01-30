@@ -1,0 +1,117 @@
+<div class="landing-container">
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo-section">
+        <mat-icon class="logo-icon">groups</mat-icon>
+        <span class="logo-text">TeamSync</span>
+      </div>
+      <div class="nav-actions">
+        <button mat-button class="nav-link" (click)="scrollToFeatures()">Features</button>
+        <button mat-button class="nav-link" (click)="goToLogin()">Sign In</button>
+        <button mat-raised-button class="cta-button" (click)="goToRegister()">Get Started Free</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero-background">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <mat-icon class="badge-icon">verified</mat-icon>
+        <span>Trusted by 10,000+ teams worldwide</span>
+      </div>
+
+      <h1 class="hero-title">
+        All Your Work.<br>
+        <span class="title-accent">One Place.</span>
+      </h1>
+
+      <p class="hero-description">
+        TeamSync brings your projects, tasks, and team together in a beautifully simple workspace.
+      </p>
+
+      <div class="hero-actions">
+        <button mat-raised-button class="primary-cta" (click)="goToRegister()">
+          <span>Start For Free</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button mat-stroked-button class="secondary-cta" (click)="goToLogin()">
+          <mat-icon>play_circle</mat-icon>
+          <span>Watch Demo</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="floating-preview">
+      <div class="preview-card card-1">
+        <div class="card-header"><mat-icon>task_alt</mat-icon> Project Dashboard</div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <div class="card-detail">68% Complete</div>
+      </div>
+      <div class="preview-card card-2">
+        <div class="card-header"><mat-icon>notifications_active</mat-icon> Team Updates</div>
+        <div class="notification-item">
+          <div class="avatar">👤</div>
+          <div class="notification-text">Sarah completed Review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="features-section">
+    <div class="section-header">
+      <div class="section-badge">Features</div>
+      <h2 class="section-title">Everything you need to succeed</h2>
+    </div>
+
+    <div class="features-grid">
+      @for (feature of features; track feature.title; let i = $index) {
+        <div class="feature-card" [style.animation-delay]="(i * 0.1) + 's'">
+          <div class="feature-icon">
+            <mat-icon>{{ feature.icon }}</mat-icon>
+          </div>
+          <h3 class="feature-title">{{ feature.title }}</h3>
+          <p class="feature-description">{{ feature.description }}</p>
+          <div class="feature-link">Learn more <mat-icon>arrow_forward</mat-icon></div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="testimonials-section">
+    <div class="testimonials-grid">
+      @for (item of testimonials; track item.name; let i = $index) {
+        <div class="testimonial-card" [style.animation-delay]="(i * 0.15) + 's'">
+          <div class="testimonial-content">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">{{ item.text }}</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">{{ item.avatar }}</div>
+            <div class="author-info">
+              <div class="author-name">{{ item.name }}</div>
+              <div class="author-role">{{ item.role }} at {{ item.company }}</div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <mat-icon>groups</mat-icon>
+          <span>TeamSync</span>
+        </div>
+        <p>© 2026 TeamSync. All rights reserved to Rivka Karp.</p>
+      </div>
+    </div>
+  </footer>
+</div>

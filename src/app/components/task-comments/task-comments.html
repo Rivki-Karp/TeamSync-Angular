@@ -1,0 +1,34 @@
+<div class="chat-container">
+  <div class="chat-messages" #scrollContainer>
+    @for (comment of comments(); track comment.id) {
+      <div class="message-row">
+        <div class="message-bubble">
+          <p class="body">{{ comment.body }}</p>
+          <span class="time">{{ comment.createdAt | date:'HH:mm' }}</span>
+        </div>
+      </div>
+    } @empty {
+      @if (!isLoading()) {
+        <div class="empty-chat">
+          <mat-icon>chat_bubble_outline</mat-icon>
+          <p>Start the discussion for this task</p>
+        </div>
+      }
+    }
+  </div>
+
+  <div class="input-container">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <input 
+        matInput 
+        [ngModel]="newCommentText()" 
+        (ngModelChange)="newCommentText.set($event)"
+        (keyup.enter)="sendComment()"
+        placeholder="Type a comment..."
+        [disabled]="isLoading()">
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="sendComment()" [disabled]="!newCommentText() || isLoading()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

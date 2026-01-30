@@ -1,0 +1,55 @@
+<div class="modern-task-card" [style.--accent-color]="priorityColor()">
+    <div class="accent-bar"></div>
+
+    <div class="card-inner">
+        <div class="card-top">
+            <div class="task-identity">
+                <div class="priority-tag" [attr.data-priority]="task().priority">
+                    {{ task().priority | uppercase }}
+                </div>
+                <div class="titles">
+                    <h3>{{ task().title }}</h3>
+                </div>
+            </div>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="more-button">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="deleteTask.emit(task().id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete Task</span>
+                </button>
+            </mat-menu>
+        </div>
+
+        <div class="card-body">
+            <p>{{ task().description || 'No description provided.' }}</p>
+        </div>
+        <div class="card-footer">
+            <div class="status-info">
+                <mat-icon>assignment_turned_in</mat-icon>
+                <span>{{ task().status }}</span>
+            </div>
+
+            <div class="action-buttons">
+                <button class="comment-btn" (click)="openComments($event)" matTooltip="View Discussion">
+                    <mat-icon>forum</mat-icon>
+                </button>
+
+                <button class="status-btn" [matMenuTriggerFor]="statusMenu">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <button mat-icon-button (click)="openComments($event)">
+        <mat-icon>forum</mat-icon>
+    </button>
+</div>
+
+<mat-menu #statusMenu="matMenu">
+    <button mat-menu-item (click)="updateStatus.emit({id: task().id, status: 'Backlog'})">Backlog</button>
+    <button mat-menu-item (click)="updateStatus.emit({id: task().id, status: 'In Progress'})">In Progress</button>
+    <button mat-menu-item (click)="updateStatus.emit({id: task().id, status: 'Done'})">Done</button>
+</mat-menu>

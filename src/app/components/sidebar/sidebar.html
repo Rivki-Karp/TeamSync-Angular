@@ -1,0 +1,41 @@
+@if (isMobileMode()) {
+<button class="hamburger-trigger" (click)="toggleSidebar()" mat-icon-button>
+  <mat-icon>{{ isDrawerOpen() ? 'close' : 'menu' }}</mat-icon>
+</button>
+}
+
+@if (isMobileMode() && isDrawerOpen()) {
+<div class="sidebar-backdrop" (click)="isDrawerOpen.set(false)"></div>
+}
+
+<aside class="sidebar" [class.collapsed]="isCollapsed() && !isMobileMode()" [class.mobile-drawer]="isMobileMode()"
+  [class.drawer-open]="isDrawerOpen()">
+
+  <nav class="sidebar-nav">
+    <a routerLink="/dashboard" routerLinkActive="active" class="nav-item"
+      (click)="isMobileMode() && isDrawerOpen.set(false)">
+      <mat-icon>dashboard</mat-icon>
+      @if (!isCollapsed() || isMobileMode()) { <span>Dashboard</span> }
+    </a>
+
+    <a routerLink="/teams" routerLinkActive="active" class="nav-item"
+      (click)="isMobileMode() && isDrawerOpen.set(false)">
+      <mat-icon>groups</mat-icon>
+      @if (!isCollapsed() || isMobileMode()) { <span>Teams</span> }
+    </a>
+
+    <a routerLink="/projects" routerLinkActive="active" class="nav-item"
+      (click)="isMobileMode() && isDrawerOpen.set(false)">
+      <mat-icon>assignment</mat-icon>
+      @if (!isCollapsed() || isMobileMode()) { <span>Projects</span> }
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    @if (!isMobileMode()) {
+    <button (click)="toggleSidebar()" mat-icon-button>
+      <mat-icon>{{ isCollapsed() ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
+    }
+  </div>
+</aside>

@@ -1,0 +1,47 @@
+<div class="modern-team-card" (click)="viewProjects.emit(team().id)">
+  <div class="accent-bar"></div>
+
+  <div class="card-inner">
+    <div class="card-top">
+      <div class="team-identity">
+        <div class="avatar-wrapper">
+          <div class="team-avatar">
+            {{ team().name[0] | uppercase }}
+          </div>
+        </div>
+        <div class="titles">
+          <h3>{{ team().name }}</h3>
+          <span class="created-label">Created {{ team().created_at | date:'MMM d' }}</span>
+        </div>
+      </div>
+      <div class="members-dot" [class.has-members]="team().members_count > 0"></div>
+    </div>
+
+    <div class="card-body">
+      <p>{{ team().description || 'Collaborate together on shared projects and goals.' }}</p>
+
+      <div class="stats-badge">
+        <mat-icon>groups</mat-icon>
+        <span><strong>{{ team().members_count }}</strong> Members</span>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="actions-left">
+        <button class="action-icon-btn" matTooltip="Add Member"
+          (click)="$event.stopPropagation(); addMember.emit(team().id)">
+          <mat-icon>person_add</mat-icon>
+        </button>
+
+        <button class="action-icon-btn delete-btn" matTooltip="Delete Team"
+          (click)="$event.stopPropagation(); deleteTeam.emit(team().id)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
+
+      <button class="go-button">
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  --dialog-accent: #3b82f6; 
+  overflow: hidden !important; 
+  border-radius: 20px;
+}
+
+h2[mat-dialog-title] {
+  margin: 0;
+  padding: 24px 24px 10px;
+  font-weight: 700;
+  color: var(--dialog-accent);
+  border: none;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px !important;
+  margin: 0 !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 60vh;
+}
+
+.dialog-content::-webkit-scrollbar {
+  display: none; 
+}
+
+.team-form, .member-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+mat-dialog-actions {
+  padding: 16px 24px 24px !important;
+  margin: 0 !important;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.create-btn, .add-btn {
+  background-color: var(--dialog-accent) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  padding: 0 24px !important;
+  height: 44px;
+  font-weight: 600;
+}

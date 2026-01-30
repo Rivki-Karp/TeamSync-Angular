@@ -1,1 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+/* ייבוא גופן נקי ומודרני */
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap');
+
+:root {
+  /* --- מצב יום (Default) --- */
+  --bg-main: #f8fafc;        /* רקע כללי */
+  --bg-card: #ffffff;        /* רקע כרטיסים ותפריטים */
+  --bg-sidebar: #ffffff;
+  --primary: #0062ff;        /* הכחול המקצועי של TeamSync */
+  --primary-hover: #0056e0;
+  --text-main: #1e293b;      /* טקסט כהה וקריא */
+  --text-muted: #64748b;     /* טקסט משני (אפור) */
+  --border: #e2e8f0;         /* קווי הפרדה דקים */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 12px;            /* עיגול פינות מודרני */
+  --error-bg: #fdecea;
+  --error-text: #d32f2f;
+}
+
+[data-theme='dark'] {
+  /* --- מצב לילה --- */
+  --bg-main: #0b1120;
+  --bg-card: #161f32;
+  --bg-sidebar: #0f172a;
+  --primary: #3d8bff;        /* כחול בהיר יותר ללילה */
+  --primary-hover: #60a5fa;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #1e293b;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  --error-bg: rgba(211, 47, 47, 0.2);
+  --error-text: #ff8a80;
+}
+
+
+/* הגדרות גלובליות לאלמנטים */
+body {
+  margin: 0;
+  font-family: 'Assistant', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease; /* מעבר חלק ונעים */
+}
+
+/* מחלקות עזר לעיצוב מהיר */
+.card-style {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+.success-snackbar {
+  --mdc-snackbar-container-color: #2e7d32;
+  --mdc-snackbar-supporting-text-color: white;
+}
+.error-snackbar {
+  --mdc-snackbar-container-color: #d32f2f;
+  --mdc-snackbar-supporting-text-color: white;
+}
+.modern-chat-dialog .mat-mdc-dialog-container {
+  --mdc-dialog-container-shape: 24px;
+  background: transparent !important;
+}
+
+.modern-chat-dialog .mat-mdc-dialog-surface {
+  background: var(--card-bg) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}

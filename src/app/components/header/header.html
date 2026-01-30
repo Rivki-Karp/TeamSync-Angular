@@ -1,0 +1,29 @@
+<header class="main-header">
+    <div class="logo-area">
+        <a routerLink="/" class="logo-link">
+            <mat-icon class="logo-icon">groups</mat-icon>
+            <span class="logo-text">TeamSync</span>
+        </a>
+    </div>
+
+    <nav class="nav-menu">
+        @if (isLoggedIn()) {
+        <span class="welcome-text">hello, <strong>{{ authState()?.user?.name }}</strong></span>
+        <button (click)="logout()" class="logout-btn">
+            <mat-icon>logout</mat-icon>
+            <span>logout</span>
+        </button>
+        }
+        @else if (!router.url.includes('/auth')) {
+        <a routerLink="/auth/login" routerLinkActive="active" class="nav-link">
+            <span>login / signup</span>
+        </a>
+        }
+    </nav>
+
+    <div class="actions">
+        <button (click)="app.toggleTheme()" class="theme-toggle-btn">
+            <span class="toggle-icon">{{ app.isDarkMode() ? '☀️' : '🌙' }}</span>
+        </button>
+    </div>
+</header>
